@@ -66,8 +66,8 @@ network for a single omics data (transcriptome or proteome).
 The parameters of  `Cal_Nbrs_Net` are:
 - `adata`: An AnnData object, where obsm contains spatial coordinates or 
            coordinate information.
-  - `feat`: The feature matrix used to calculate the neighbors. Can be either reduced coordinates ('X_pca') or spatial 
-            coordinates ('spatial').
+- `feat`: The feature matrix used to calculate the neighbors. Can be either reduced coordinates ('X_pca') or spatial 
+          coordinates ('spatial').
 - `rad_cutoff`: When using the radius neighbor model, defines the neighborhood radius. If using the Radius model, 
                 this value must be provided.
 - `k_cutoff`: Defines the number of neighbors when using the KNN model. This value is required if the KNN model is used.
