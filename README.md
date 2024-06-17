@@ -29,7 +29,7 @@ Figure 1. Overview of SSGATE. (A) Neighborhood graph construction for single-cel
 
 ### Data Description
 
-`Note:` SSGATE requires data in anndata (https://anndata.readthedocs.io/en/latest/) format as inputs. 
+`Note:` SSGATE requires data in [anndata](https://anndata.readthedocs.io/en/latest/) format as inputs. 
 The expression profiles are required to be stored in anndata.X, otherwise the data cannot be read 
 correctly. The spatial coordinates from spatial multi-omics data are required to be stored in 
 `anndata.obsm['spatial']`, otherwise it will be processed as single-cell multi-omics data due to 
