@@ -1,17 +1,17 @@
-# Single-cell multi-omics and spatial multi-omics data integration via dual-path graph attention auto-encoder
+# Multi-omics integration for both single-cell and spatially resolved data based on dual-path graph attention auto-encoder
 ## Introduction
-Single-cell multi-omics data integration enables joint analysis of the resolution at single-cell level to provide 
-comprehensive and accurate understanding of complex biological systems, while spatial multi-omics data integration is 
-benefit to the exploration of cell spatial heterogeneity to facilitate more diversified downstream analyses. Existing 
-methods are mainly designed for single-cell multi-omics data with little consideration on spatial information, and 
-still have the room for performance improvement. A reliable multi-omics data integration method that can be applied to 
-both single-cell and spatially resolved data is necessary and significant. We propose a single-cell multi-omics and 
-spatial multi-omics data integration method based on dual-path graph attention auto-encoder (SSGATE). It can construct 
-neighborhood graphs based on single-cell expression data and spatial information respectively, and perform 
-self-supervised learning for data integration through the graph attention auto-encoders from two paths. SSGATE is 
-applied to data integration of transcriptomics and proteomics, including single-cell and spatially resolved data of 
-various tissues from different sequencing technologies. SSGATE shows better performance and stronger robustness than 
-competitive methods and facilitates downstream analysis.
+Single-cell multi-omics integration enables joint analysis at the single-cell level of resolution to provide more 
+accurate understanding of complex biological systems, while spatial multi-omics integration is benefit to the 
+exploration of cell spatial heterogeneity to facilitate more comprehensive downstream analyses. Existing methods are 
+mainly designed for single-cell multi-omics data with little consideration on spatial information, and still have the 
+room for performance improvement. A reliable multi-omics integration method designed for both single-cell and spatially 
+resolved data is necessary and significant. We propose a multi-omics integration method based on dual-path graph 
+attention auto-encoder (SSGATE). It can construct the neighborhood graphs based on single-cell expression profiles or 
+spatial coordinates, enabling it to process single-cell data and utilize spatial information from spatially resolved 
+data. It can also perform self-supervised learning for integration through the graph attention auto-encoders from two 
+paths. SSGATE is applied to integration of transcriptomics and proteomics, including single-cell and spatially 
+resolved data of various tissues from different sequencing technologies. SSGATE shows better performance and stronger 
+robustness than competitive methods and facilitates downstream analysis.
 
 ## Schematic Diagram
 
@@ -19,9 +19,7 @@ competitive methods and facilitates downstream analysis.
     <img src="img/Fig1.jpg" alt="fig1" width="1000" height="800">
 </div>
 
-Figure: A. Neighborhood graph construction for single-cell multi-omics and spatial multi-omics data. 
-
-Figure: B. Dual-path graph attention auto-encoder for multi-omics data integration.
+Figure 1. Overview of SSGATE. (A) Neighborhood graph construction for single-cell multi-omics and spatial multi-omics data. (B) Dual-path graph attention auto-encoder for multi-omics integration. 
 
 
 ## Quick Start
@@ -30,9 +28,19 @@ Figure: B. Dual-path graph attention auto-encoder for multi-omics data integrati
 [Download](https://github.com/Linliu-Bioinf/SSGATE/archive/refs/heads/main.zip) this GitHub repository, and extract the contents into a folder.
 
 ### Data Description
+
+`Note:` SSGATE requires data in anndata (https://anndata.readthedocs.io/en/latest/) format as inputs. 
+The expression profiles are required to be stored in anndata.X, otherwise the data cannot be read 
+correctly. The spatial coordinates from spatial multi-omics data are required to be stored in 
+`anndata.obsm['spatial']`, otherwise it will be processed as single-cell multi-omics data due to 
+the spatial information cannot be read.
+
 We provide the datasets used in this study, which are stored in the BGI cloud disk.
 [Link](https://bgipan.genomics.cn/#/link/vkxFIxtLWYRBXeHgHwlW)
 Extract password is :nrEB
+
+
+
 ## Install and use it by Git
 ```bash
 ### Python enviroment constructed by Conda
@@ -53,7 +61,7 @@ running `SSGATE` have been configured.
 
 ## Parameter Explanation
 ### Step 1:Neighborhood network construction
-Before running SSGATE for multi-omics joint feature analysis, you must use the XX function to construct a neighbor 
+Before running SSGATE for multi-omics joint feature analysis, you must use the `Cal_Nbrs_Net` function to construct a neighbor 
 network for a single omics data (transcriptome or proteome).
 
     adata = Cal_Nbrs_Net(adata, 
