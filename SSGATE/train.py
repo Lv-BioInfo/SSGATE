@@ -9,13 +9,17 @@ import torch.nn.functional as F
 import phenograph
 
 
-from .model import ssmiDGATE
+from .model import SSGATE
 from .utils import Transfer_pytorch_Data
 from .triplet_loss import batch_hard_triplet_loss
 
 
 
-def train(adata1, adata2, hidden_dims1 = 128, hidden_dims2 = 128, out_dims = 30, n_epochs=200, lr=0.001, epochs_init = 100, cluster_update_epoch = 100, key_added='ssmi_embed', gradient_clipping=5.,  weight_decay=0.0001, verbose=True, random_seed=0, save_loss=False, save_reconstrction=False, sigma = 0.1,margin = 1.0, device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu'), feat1 = "PCA", feat2 = 'fullproteins'):
+def train(adata1, adata2, hidden_dims1 = 128, hidden_dims2 = 128, out_dims = 30, n_epochs=200, lr=0.001,
+          epochs_init = 100, cluster_update_epoch = 100, key_added='ssgate_embed', gradient_clipping=5.,
+          weight_decay=0.0001, verbose=True, random_seed=0, save_loss=False, save_reconstrction=False,
+          sigma = 0.1,margin = 1.0, device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu'),
+          feat1 = "PCA", feat2 = 'fullproteins'):
 
 #adata1: spatial transcriptomics
 #adata2: spatial proteomics
@@ -34,7 +38,7 @@ def train(adata1, adata2, hidden_dims1 = 128, hidden_dims2 = 128, out_dims = 30,
     data2 = Transfer_pytorch_Data(adata2, feat = feat2)
 
 
-    model = ssmiDGATE(data1.x.shape[1], hidden_dims1, data2.x.shape[1], hidden_dims2, out_dims).to(device)
+    model = SSGATE(data1.x.shape[1], hidden_dims1, data2.x.shape[1], hidden_dims2, out_dims).to(device)
     data1 = data1.to(device)
     data2 = data2.to(device)
 
@@ -110,9 +114,9 @@ def train(adata1, adata2, hidden_dims1 = 128, hidden_dims2 = 128, out_dims = 30,
         ReX_y = y_hat.to('cpu').detach().numpy()
         ReX_y[ReX_y<0] = 0
         ReX_x[ReX_x<0] = 0
-        adata1.obsm["ssmi_rex"] = ReX_x
+        adata1.obsm["ssgate_rex"] = ReX_x
         adata1.obsm["z_x"] = z_x
-        adata2.obsm["ssmi_rex"] = ReX_y
+        adata2.obsm["ssgate_rex"] = ReX_y
         adata2.obsm["z_y"] = z_y
 #Plot loss history
     print("Ploting losses!")

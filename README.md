@@ -71,19 +71,29 @@ network for a single omics data (transcriptome or proteome).
                          model='Radius', 
                          verbose=True):
 
-The parameters of  `Cal_Nbrs_Net` are:
-- `adata`: An AnnData object, where obsm contains spatial coordinates or 
-           coordinate information.
-- `feat`: The feature matrix used to calculate the neighbors. Can be either reduced coordinates ('X_pca') or spatial 
-          coordinates ('spatial').
-- `rad_cutoff`: When using the radius neighbor model, defines the neighborhood radius. If using the Radius model, 
-                this value must be provided.
-- `k_cutoff`: Defines the number of neighbors when using the KNN model. This value is required if the KNN model is used.
-- `model`: Specifies the type of model to use. Possible values are 'Radius' and 'KNN'.
-- `verbose`: If True, the function will print progress information as it calculates.
+#### Parameters of `Cal_Nbrs_Net`:
+
+- **`adata`**: 
+  - An AnnData object where `obsm` contains spatial coordinates or coordinate information.
+
+- **`feat`** (default: `'X_pca'`):
+  - The feature matrix used to calculate the neighbors. Can be either reduced coordinates (`'X_pca'`) or spatial coordinates (`'spatial'`).
+
+- **`rad_cutoff`** (default: `None`):
+  - When using the radius neighbor model, defines the neighborhood radius. If using the Radius model, this value must be provided.
+
+- **`k_cutoff`** (default: `None`):
+  - Defines the number of neighbors when using the KNN model. This value is required if the KNN model is used.
+
+- **`model`** (default: `'Radius'`):
+  - Specifies the type of model to use. Possible values are `'Radius'` and `'KNN'`.
+
+- **`verbose`** (default: `True`):
+  - If `True`, the function will print progress information as it calculates.
+
 
 return value:
-- `adata`: The updated AnnData object, containing the calculated neighboring network information, is stored in 
+- **`adata`**: The updated AnnData object, containing the calculated neighboring network information, is stored in 
     adata.uns['nbrs_net'].
 
 ### Step 2:Network pruning
@@ -94,12 +104,11 @@ the uns attribute of the AnnData object.
     adata = prune_net(adata)
 
 return value:
-- `adata`: The updated AnnData object, containing the pruned neighbor network information, is stored in uns['nbrs_net'].
+- **`adata`**: The updated AnnData object, containing the pruned neighbor network information, is stored in uns['nbrs_net'].
 
 ### Step 3:Training
-This function is used to prune the adjacency network calculated by the `Cal_Nbrs_Net` function, ensuring that each edge 
-only connects cells within the same cell population. After pruning, the updated adjacency network will be stored in 
-the uns attribute of the AnnData object.
+After completing the above two steps, training can be carried out. After multiple rounds of training, the joint feature 
+representation of the two omics can be obtained.
 
     adata_st, adata_sp = ssmi.train(adata_st, 
                                     adata_sp, 
@@ -136,6 +145,94 @@ The parameters of  `train` are:
 - `device`: The training device (GPU or CPU).
 - `feat1`: Features used by the first dataset.
 - `feat2`: Features used by the second dataset.
+
+#### Hyperparameters:
+
+- **`adata1`**:
+  - **Description**: The spatial transcriptomics data in the form of an AnnData object. This object should contain the expression data and spatial coordinates of cells.
+  - **Type**: AnnData object
+
+- **`adata2`**:
+  - **Description**: The spatial proteomics data in the form of an AnnData object. Similar to `adata1`, it should contain protein expression data and spatial coordinates of cells.
+  - **Type**: AnnData object
+
+- **`hidden_dims1`** (default: `128`):
+  - **Description**: The dimensionality of the hidden layer for the first dataset (`adata1`). This defines the number of neurons in the hidden layer for processing the transcriptomics data.
+  - **Type**: Integer
+
+- **`hidden_dims2`** (default: `128`):
+  - **Description**: The dimensionality of the hidden layer for the second dataset (`adata2`). This defines the number of neurons in the hidden layer for processing the proteomics data.
+  - **Type**: Integer
+
+- **`out_dims`** (default: `30`):
+  - **Description**: The dimensionality of the output layer. This is the size of the embedding space where the integrated features from both datasets will be projected.
+  - **Type**: Integer
+
+- **`n_epochs`** (default: `200`):
+  - **Description**: The total number of epochs for training the model. An epoch is one complete pass through the entire training dataset.
+  - **Type**: Integer
+
+- **`lr`** (default: `0.001`):
+  - **Description**: The learning rate for the optimizer. It controls how much to change the model parameters at each step of the optimization.
+  - **Type**: Float
+
+- **`epochs_init`** (default: `100`):
+  - **Description**: The number of initial epochs for pretraining before clustering updates are applied. During this phase, the model is trained to learn initial embeddings without updating clusters.
+  - **Type**: Integer
+
+- **`cluster_update_epoch`** (default: `100`):
+  - **Description**: The interval (in epochs) at which clustering is updated during training. This means the clustering labels are updated every `cluster_update_epoch` epochs.
+  - **Type**: Integer
+
+- **`key_added`** (default: `'ssgate_embed'`):
+  - **Description**: The key under which the resulting embeddings are stored in the AnnData object. This allows retrieval of the embeddings after training.
+  - **Type**: String
+
+- **`gradient_clipping`** (default: `5.0`):
+  - **Description**: The maximum allowed value for gradient clipping. This is used to prevent the gradients from exploding by scaling them to this maximum value.
+  - **Type**: Float
+
+- **`weight_decay`** (default: `0.0001`):
+  - **Description**: The weight decay (L2 regularization) factor for the optimizer. This helps to prevent overfitting by penalizing large weights.
+  - **Type**: Float
+
+- **`verbose`** (default: `True`):
+  - **Description**: If `True`, prints progress information during training. This is useful for monitoring the training process.
+  - **Type**: Boolean
+
+- **`random_seed`** (default: `0`):
+  - **Description**: The seed for random number generators to ensure reproducibility of the training process. Using the same seed will produce the same results every time the code is run.
+  - **Type**: Integer
+
+- **`save_loss`** (default: `False`):
+  - **Description**: If `True`, saves the training loss history in the AnnData object. This can be useful for analyzing the training performance later.
+  - **Type**: Boolean
+
+- **`save_reconstrction`** (default: `False`):
+  - **Description**: If `True`, saves the reconstructed data in the AnnData object. This allows for inspection of the reconstructed data post-training.
+  - **Type**: Boolean
+
+- **`sigma`** (default: `0.1`):
+  - **Description**: The weighting factor for the triplet loss in the overall loss calculation. This controls the importance of the triplet loss relative to the reconstruction loss.
+  - **Type**: Float
+
+- **`margin`** (default: `1.0`):
+  - **Description**: The margin parameter for the triplet loss. It defines the minimum distance between positive and negative pairs in the embedding space.
+  - **Type**: Float
+
+- **`device`** (default: `torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')`):
+  - **Description**: The device on which to run the training, either GPU (if available) or CPU. Using a GPU can significantly speed up the training process.
+  - **Type**: `torch.device`
+
+- **`feat1`** (default: `"PCA"`):
+  - **Description**: The feature type used for the first dataset (`adata1`). It typically refers to the PCA-reduced features of the transcriptomics data.
+  - **Type**: String
+
+- **`feat2`** (default: `'fullproteins'`):
+  - **Description**: The feature type used for the second dataset (`adata2`). It typically refers to the full protein expression data.
+  - **Type**: String
+
+
 
 ## Tutorial
 We provide a basic tutorial on using SSGATE (Tutorial_of_SSGATE.ipynb).

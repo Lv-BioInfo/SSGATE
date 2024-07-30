@@ -5,9 +5,9 @@ import torch.nn as nn
 from .GATConv import GATConv
 
 
-class ssmiDGATE(torch.nn.Module):
+class SSGATE(torch.nn.Module):
     def __init__(self, in_dims1, hidden_dims1, in_dims2, hidden_dims2, out_dims, dropout=0.0):
-        super(ssmiDGATE, self).__init__()
+        super(SSGATE, self).__init__()
 
         dim_concat = hidden_dims1 + hidden_dims2
 
