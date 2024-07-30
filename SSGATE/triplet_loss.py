@@ -1,14 +1,6 @@
 #!/bin/env python3
 import torch
 
-
-
-
-
-
-
-
-
 def batch_hard_triplet_loss(labels, embeddings, margin, squared=False):
     # Get the pairwise distance matrix
     pairwise_dist = pairwise_distances(embeddings, squared=squared)
@@ -120,22 +112,3 @@ def get_triplet_mask(labels):
     mask = torch.logical_and(distinct_indices, valid_labels)
 
     return mask
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

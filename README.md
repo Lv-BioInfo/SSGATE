@@ -110,43 +110,21 @@ return value:
 After completing the above two steps, training can be carried out. After multiple rounds of training, the joint feature 
 representation of the two omics can be obtained.
 
-    adata_st, adata_sp = ssmi.train(adata_st, 
-                                    adata_sp, 
-                                    hidden_dims1 = 128, 
-                                    hidden_dims2 = 128, 
-                                    out_dims = 30, 
-                                    cluster_update_epoch = 20, 
-                                    epochs_init = 50, 
-                                    n_epochs=300, 
-                                    lr=0.001,
-                                    save_reconstrction=False, 
-                                    sigma = 0.1, 
-                                    device = "cuda:0", 
-                                    feat1 = "PCA")
-The parameters of  `train` are:
-- `adata_st`: An AnnData object containing transcriptomics data.
-- `adata_sp`: AnnData object containing proteomics data.
-- `hidden_dims1`: Hidden layer dimensions for the first dataset in the model.
-- `hidden_dims2`: Hidden layer dimensions for the second dataset in the model.
-- `out_dims`: The dimensions of the model output embeddings.
-- `cluster_update_epoch`: The interval between updating cluster labels.
-- `epochs_init`: Number of epochs in the initial training phase.
-- `n_epochs`: The total number of training rounds.
-- `lr`: Learning rate.
-- `key_added`: The key under which the embed result is stored.
-- `gradient_clipping`: Gradient clipping threshold.
-- `weight_decay`: Weight decay coefficient.
-- `verbose`: Controls the output of training process information.
-- `random_seed`: Random seed to ensure reproducibility.
-- `save_loss`: Whether to save training loss.
-- `save_reconstrction`: Whether to save the reconstruction results.
-- `sigma`: The weight of the triplet loss in the loss function.
-- `margin`: Margin of triplet loss.
-- `device`: The training device (GPU or CPU).
-- `feat1`: Features used by the first dataset.
-- `feat2`: Features used by the second dataset.
+    adata_st, adata_sp = ssgate.train(adata_st, 
+                                      adata_sp, 
+                                      hidden_dims1 = 128, 
+                                      hidden_dims2 = 128, 
+                                      out_dims = 30, 
+                                      cluster_update_epoch = 20, 
+                                      epochs_init = 50, 
+                                      n_epochs=300, 
+                                      lr=0.001,
+                                      save_reconstrction=False, 
+                                      sigma = 0.1, 
+                                      device = "cuda:0", 
+                                      feat1 = "PCA")
 
-#### Hyperparameters:
+#### Hyperparameters of `train`:
 
 - **`adata1`**:
   - **Description**: The spatial transcriptomics data in the form of an AnnData object. This object should contain the expression data and spatial coordinates of cells.
@@ -234,8 +212,23 @@ The parameters of  `train` are:
 
 
 
-## Tutorial
-We provide a basic tutorial on using SSGATE (Tutorial_of_SSGATE.ipynb).
+##  SSGATE Reproduction Scripts
+
+We provide scripts for reproducing the results of the SSGATE paper, as detailed below:
+
+### Single-Cell Multi-Omics Datasets
+
+1. **BMNC Dataset Reproduction:**
+   - Script file: [Tutorial_of_SSGATE_BMNC.ipynb](./Tutorial/Tutorial_of_SSGATE_BMNC.ipynb)
+
+2. **SLN_111_D1 Dataset Reproduction:**
+   - Script file: [Tutorial_of_SSGATE_SLN111D1.ipynb](./Tutorial/Tutorial_of_SSGATE_SLN111D1.ipynb)
+
+### Spatial Multi-Omics Dataset and Downstream Analysis
+
+- Script file: [Tutorial_of_SSGATE_SCS_MT.ipynb](./Tutorial/Tutorial_of_SSGATE_SCS_MT.ipynb)
+
+
 
 ## Citation
 If you use `SSGATE` in your work, please cite it.
