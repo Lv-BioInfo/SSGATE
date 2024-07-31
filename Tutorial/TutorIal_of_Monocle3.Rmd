@@ -20,9 +20,9 @@ library(patchwork)
 
 ```{r}
 # Read expression matrix, metadata, and gene metadata
-expression_matrix <- read.csv('Monocle3_folder/expression_matrix_ssmidgate.csv', row.names = 1)
-metadata <- read.csv('Monocle3_folder/metadata_ssmidgate.csv', row.names = 1)
-gene_metadata <- read.csv('Monocle3_folder/gene_metadata_ssmidgate.csv', row.names = 1)
+expression_matrix <- read.csv('Monocle3_folder/expression_matrix.csv', row.names = 1)
+metadata <- read.csv('Monocle3_folder/metadata.csv', row.names = 1)
+gene_metadata <- read.csv('Monocle3_folder/gene_metadata.csv', row.names = 1)
 
 expression_matrix <- t(expression_matrix)
 rownames(expression_matrix) <- rownames(gene_metadata)
@@ -35,8 +35,8 @@ cds <- new_cell_data_set(expression_matrix,
                          gene_metadata = gene_metadata)
 
 # Read embedding and UMAP values
-fuse_embed <- read.csv('Monocle3_folder/Fuse_embed_ssmidgate.csv', row.names = 1)
-umap <- read.csv('Monocle3_folder/umap_ssmidgate.csv', row.names = 1)
+fuse_embed <- read.csv('Monocle3_folder/ssgate_embed.csv', row.names = 1)
+umap <- read.csv('Monocle3_folder/umap.csv', row.names = 1)
 fuse_embed <- as.matrix(fuse_embed)
 umap <- as.matrix(umap)
 ```
@@ -47,17 +47,16 @@ cds <- preprocess_cds(cds, num_dim = 30, method = "PCA")
 reducedDims(cds)$PCA <- fuse_embed
 cds <- reduce_dimension(cds, reduction_method ='UMAP')
 reducedDims(cds)$UMAP <- umap
-# plot_cells(cds, label_groups_by_cluster=FALSE,  color_cells_by = "celltype_spatialfusor_leiden")
 ```
 
 
 ```{r}
 # Convert cell type information to character and add color
-colData(cds)$celltype_SSMI_DGATE_leiden <- as.character(colData(cds)$celltype_SSMI_DGATE_leiden)
-unique_cell_types <- sort(unique(colData(cds)$celltype_SSMI_DGATE_leiden))
+colData(cds)$ssgate_cluster <- as.character(colData(cds)$ssgate_cluster)
+unique_cell_types <- sort(unique(colData(cds)$ssgate_cluster))
 colors <- c('#1f77b4', '#ff7f0e', '#279e68', '#d62728', '#aa40fc', '#8C564B', '#8c564b')
 color_mapping <- setNames(colors, unique_cell_types)
-colData(cds)$color <- color_mapping[colData(cds)$celltype_SSMI_DGATE_leiden]
+colData(cds)$color <- color_mapping[colData(cds)$ssgate_cluster]
 ```
 
 
@@ -82,7 +81,7 @@ cds <- sce
 ```{r}
 # Generate a cell plot and save as PNG
 p <- plot_cells(cds,
-           color_cells_by = "celltype_SSMI_DGATE_leiden",
+           color_cells_by = "ssgate_cluster",
            label_cell_groups=FALSE,
            label_leaves=TRUE,
            label_branch_points=TRUE,
@@ -98,7 +97,7 @@ ggsave("Monocle3_E6.png", plot = p, width = 8, height = 8)
 # Generate a PDF version of the plot
 pdf("Monocle3_E6.pdf")
 plot_cells(cds,
-           color_cells_by = "celltype_SSMI_DGATE_leiden",
+           color_cells_by = "ssgate_cluster",
            label_cell_groups=FALSE,
            label_leaves=TRUE,
            label_branch_points=TRUE,
@@ -123,7 +122,7 @@ library(patchwork)  # For combining plots
 plot_genes_group <- function(genes, cds, color_scheme) {
   valid_genes <- genes[genes %in% rownames(rowData(cds))]
   p <- plot_genes_in_pseudotime(cds[valid_genes, ],
-                                color_cells_by = "celltype_SSMI_DGATE_leiden",
+                                color_cells_by = "ssgate_cluster",
                                 min_expr = 0,
                                 cell_size = 1,
                                 ncol = 3) +

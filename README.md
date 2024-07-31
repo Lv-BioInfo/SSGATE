@@ -227,6 +227,8 @@ We provide scripts for reproducing the results of the SSGATE paper, as detailed 
 ### Spatial Multi-Omics Dataset and Downstream Analysis
 
 - Script file: [Tutorial_of_SSGATE_SCS_MT.ipynb](./Tutorial/Tutorial_of_SSGATE_SCS_MT.ipynb)
+- Presudo-time Analysis used Monocle3:  [TutorIal_of_Monocle3.Rmd](./Tutorial/TutorIal_of_Monocle3.Rmd)
+- GO analysis used ClusterProfiler: [Tutorial_of_GO_analysis.Rmd](./Tutorial/Tutorial_of_GO_analysis.Rmd)
 
 
 
