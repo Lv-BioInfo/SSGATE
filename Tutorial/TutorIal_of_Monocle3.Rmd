@@ -1,0 +1,155 @@
+---
+title: "Tutorial of Monocle3 in SCS_MT dataset"
+output: html_notebook
+---
+
+
+```{r}
+library(monocle3)
+library(dplyr)
+library(Seurat)
+library(SeuratWrappers)
+library(ggplot2)
+library(RColorBrewer)
+library(ggplot2)
+library(cowplot)
+library(dplyr)
+library(ggplot2)
+library(patchwork)
+```
+
+```{r}
+# Read expression matrix, metadata, and gene metadata
+expression_matrix <- read.csv('Monocle3_folder/expression_matrix_ssmidgate.csv', row.names = 1)
+metadata <- read.csv('Monocle3_folder/metadata_ssmidgate.csv', row.names = 1)
+gene_metadata <- read.csv('Monocle3_folder/gene_metadata_ssmidgate.csv', row.names = 1)
+
+expression_matrix <- t(expression_matrix)
+rownames(expression_matrix) <- rownames(gene_metadata)
+colnames(expression_matrix) <- rownames(metadata)
+gene_metadata$gene_short_name = rownames(gene_metadata)
+
+# Create a CellDataSet object
+cds <- new_cell_data_set(expression_matrix,
+                         cell_metadata = metadata,
+                         gene_metadata = gene_metadata)
+
+# Read embedding and UMAP values
+fuse_embed <- read.csv('Monocle3_folder/Fuse_embed_ssmidgate.csv', row.names = 1)
+umap <- read.csv('Monocle3_folder/umap_ssmidgate.csv', row.names = 1)
+fuse_embed <- as.matrix(fuse_embed)
+umap <- as.matrix(umap)
+```
+
+```{r}
+# Preprocess the CellDataSet with PCA and integrate existing embeddings
+cds <- preprocess_cds(cds, num_dim = 30, method = "PCA")
+reducedDims(cds)$PCA <- fuse_embed
+cds <- reduce_dimension(cds, reduction_method ='UMAP')
+reducedDims(cds)$UMAP <- umap
+# plot_cells(cds, label_groups_by_cluster=FALSE,  color_cells_by = "celltype_spatialfusor_leiden")
+```
+
+
+```{r}
+# Convert cell type information to character and add color
+colData(cds)$celltype_SSMI_DGATE_leiden <- as.character(colData(cds)$celltype_SSMI_DGATE_leiden)
+unique_cell_types <- sort(unique(colData(cds)$celltype_SSMI_DGATE_leiden))
+colors <- c('#1f77b4', '#ff7f0e', '#279e68', '#d62728', '#aa40fc', '#8C564B', '#8c564b')
+color_mapping <- setNames(colors, unique_cell_types)
+colData(cds)$color <- color_mapping[colData(cds)$celltype_SSMI_DGATE_leiden]
+```
+
+
+```{r}
+# Assign the color information to a new column and perform clustering and graph learning
+colData(cds)$color_cells <- colData(cds)$color
+cds <- cluster_cells(cds)
+cds <- learn_graph(cds)
+
+# Save the processed CellDataSet object to a file
+saveRDS(cds, file = "Monocle_result/sce_E6.rds")
+```
+
+
+```{r}
+# Load the saved SingleCellExperiment object
+sce <- readRDS("Monocle_result/sce_E6.rds")
+cds <- sce
+```
+
+
+```{r}
+# Generate a cell plot and save as PNG
+p <- plot_cells(cds,
+           color_cells_by = "celltype_SSMI_DGATE_leiden",
+           label_cell_groups=FALSE,
+           label_leaves=TRUE,
+           label_branch_points=TRUE,
+           graph_label_size=4) + scale_color_manual(values = c('#1f77b4', '#ff7f0e', '#279e68', '#d62728', '#aa40fc', '#8C564B', '#8c564b'))
+p <- p + theme(
+  aspect.ratio = 1, 
+  plot.margin = margin(5, 5, 5, 5)  
+)
+print(p)
+ggsave("Monocle3_E6.png", plot = p, width = 8, height = 8)
+
+
+# Generate a PDF version of the plot
+pdf("Monocle3_E6.pdf")
+plot_cells(cds,
+           color_cells_by = "celltype_SSMI_DGATE_leiden",
+           label_cell_groups=FALSE,
+           label_leaves=TRUE,
+           label_branch_points=TRUE,
+           graph_label_size=1.5) + scale_color_manual(values = c('#1f77b4', '#ff7f0e', '#279e68', '#d62728', '#aa40fc', '#8C564B', '#8c564b'))
+dev.off()
+
+```
+
+
+
+```{r}
+# Define gene groups for pseudotime analysis
+genes_group1 <- c("Dntt", "Rag1", "Trbc1")
+genes_group2 <- c("Fcgbp", "Gpx3", "H2-K1")
+
+
+# Function to plot genes in pseudotime
+# library(Monocle3)  # Load Monocle3 or relevant package for pseudotime analysis
+library(ggplot2)
+library(patchwork)  # For combining plots
+
+plot_genes_group <- function(genes, cds, color_scheme) {
+  valid_genes <- genes[genes %in% rownames(rowData(cds))]
+  p <- plot_genes_in_pseudotime(cds[valid_genes, ],
+                                color_cells_by = "celltype_SSMI_DGATE_leiden",
+                                min_expr = 0,
+                                cell_size = 1,
+                                ncol = 3) +
+        scale_color_manual(values = color_scheme) +
+        geom_smooth(method = "loess", span = 0.3, color = "black") +
+        guides(colour = FALSE)  # Hide individual plot legends
+  return(p)
+}
+# Define a color scheme for the plots
+color_scheme <- c('#2A7DB7', '#FF871E', '#3FA83F', '#D72C2D', '#976ABE', '#8C564B', '#E37AC2')
+
+# Generate plots for each gene group
+plot1 <- plot_genes_group(genes_group1, cds, color_scheme)
+plot2 <- plot_genes_group(genes_group2, cds, color_scheme)
+
+# Combine plots and collect guides
+combined_plot <- plot1 / plot2 + plot_layout(guides = 'collect')  # Ensures only one legend
+print(combined_plot)  # Display the plot
+# Save the combined plot as a PNG file with specified dimensions
+ggsave("combined_genes_plot.png", plot = combined_plot, width = 9, height = 6)
+
+```
+
+
+
+
+
+
+
