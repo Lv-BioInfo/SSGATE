@@ -3,8 +3,8 @@
 Single-cell multi-omics integration enables joint analysis at the single-cell level of resolution to provide more 
 accurate understanding of complex biological systems, while spatial multi-omics integration is benefit to the 
 exploration of cell spatial heterogeneity to facilitate more comprehensive downstream analyses. Existing methods are 
-mainly designed for single-cell multi-omics data with little consideration on spatial information, and still have the 
-room for performance improvement. A reliable multi-omics integration method designed for both single-cell and spatially 
+mainly designed for single-cell multi-omics data with little consideration of spatial information, and still have room 
+for performance improvement. A reliable multi-omics integration method designed for both single-cell and spatially 
 resolved data is necessary and significant. We propose a multi-omics integration method based on dual-path graph 
 attention auto-encoder (SSGATE). It can construct the neighborhood graphs based on single-cell expression profiles or 
 spatial coordinates, enabling it to process single-cell data and utilize spatial information from spatially resolved 
@@ -165,7 +165,7 @@ We provide scripts for reproducing the results of the SSGATE paper, as detailed 
 
 ### Single-Cell Multi-Omics Datasets
 1. **BMNC Dataset Reproduction:**
-   - Script file: [Tutorial_of_SSGATE_BMNC.ipynb](./Tutorial/tutorial_of_SSGATE_BMNC.ipynb)
+   - Script file: [Tutorial_of_SSGATE_BMNC.ipynb](./Tutorial/Tutorial_of_SSGATE_BMNC.ipynb)
 
 2. **SLN_111_D1 Dataset Reproduction:**
    - Script file: [Tutorial_of_SSGATE_SLN111D1.ipynb](./Tutorial/Tutorial_of_SSGATE_SLN111D1.ipynb)
