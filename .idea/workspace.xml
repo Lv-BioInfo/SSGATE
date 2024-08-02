@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e4b32642-4f60-4cfb-b888-454acef509d5" name="Changes" comment="0802 push 3" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Jupyter Notebook" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2hRKC1gRSEmNY0U0GmdfpkyDh7T" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.test.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.highlight.mappings&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.highlight.symlinks&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.show.date&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.show.permissions&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.show.size&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/lvtongxuan/Desktop/SSGATE-main/Tutorial&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\lvtongxuan\Desktop\SSGATE-main\Tutorial" />
+      <recent name="C:\Users\lvtongxuan\Desktop\SSGATE-main" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\lvtongxuan\Desktop\SSGATE-main\Tutorial\SLN111D1_h5ad_rds" />
+      <recent name="C:\Users\lvtongxuan\Desktop\SSGATE-main\Tutorial\BMNC_h5_h5ad_rds" />
+      <recent name="C:\Users\lvtongxuan\Desktop\SSGATE-main\Tutorial" />
+      <recent name="C:\Users\lvtongxuan\Desktop\SSGATE-main\img" />
+      <recent name="C:\Users\lvtongxuan\Desktop\SSGATE-main\SSGATE" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="SSGATE-main" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tutorial" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tutorial/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-PY-241.17890.14" />
+        <option value="bundled-python-sdk-5b207ade9991-7e9c3bbb6e34-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.17890.14" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e4b32642-4f60-4cfb-b888-454acef509d5" name="Changes" comment="" />
+      <created>1717551319171</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1717551319171</updated>
+      <workItem from="1717551320301" duration="12084000" />
+      <workItem from="1717576376500" duration="979000" />
+      <workItem from="1717577755130" duration="2303000" />
+      <workItem from="1717754753513" duration="533000" />
+      <workItem from="1718616754906" duration="2488000" />
+      <workItem from="1719199362509" duration="37000" />
+      <workItem from="1719199404512" duration="9000" />
+      <workItem from="1719909547892" duration="1007000" />
+      <workItem from="1720400260889" duration="695000" />
+      <workItem from="1722329121725" duration="7959000" />
+      <workItem from="1722390417361" duration="4721000" />
+      <workItem from="1722395470649" duration="8219000" />
+      <workItem from="1722411601854" duration="16800000" />
+      <workItem from="1722582210008" duration="110000" />
+      <workItem from="1722582327290" duration="1202000" />
+    </task>
+    <task id="LOCAL-00001" summary="pushi pu shi">
+      <option name="closed" value="true" />
+      <created>1717578474183</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1717578474183</updated>
+    </task>
+    <task id="LOCAL-00002" summary="pushi pu shi">
+      <option name="closed" value="true" />
+      <created>1717578513800</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1717578513800</updated>
+    </task>
+    <task id="LOCAL-00003" summary="0617 push">
+      <option name="closed" value="true" />
+      <created>1718618332805</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1718618332805</updated>
+    </task>
+    <task id="LOCAL-00004" summary="0617 push 2">
+      <option name="closed" value="true" />
+      <created>1718621487112</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1718621487112</updated>
+    </task>
+    <task id="LOCAL-00005" summary="0730 push 1">
+      <option name="closed" value="true" />
+      <created>1722342063691</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1722342063691</updated>
+    </task>
+    <task id="LOCAL-00006" summary="0731 push 1">
+      <option name="closed" value="true" />
+      <created>1722392834557</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1722392834558</updated>
+    </task>
+    <task id="LOCAL-00007" summary="0731 push 2">
+      <option name="closed" value="true" />
+      <created>1722393529052</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1722393529052</updated>
+    </task>
+    <task id="LOCAL-00008" summary="0731 push 3">
+      <option name="closed" value="true" />
+      <created>1722394748065</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1722394748065</updated>
+    </task>
+    <task id="LOCAL-00009" summary="0802 push 1">
+      <option name="closed" value="true" />
+      <created>1722581978308</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1722581978308</updated>
+    </task>
+    <task id="LOCAL-00010" summary="0802 push 2">
+      <option name="closed" value="true" />
+      <created>1722582543810</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1722582543810</updated>
+    </task>
+    <task id="LOCAL-00011" summary="0802 push 2">
+      <option name="closed" value="true" />
+      <created>1722582645149</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1722582645149</updated>
+    </task>
+    <task id="LOCAL-00012" summary="0802 push 3">
+      <option name="closed" value="true" />
+      <created>1722585633206</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1722585633206</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="pushi pu shi" />
+    <MESSAGE value="0617 push" />
+    <MESSAGE value="0617 push 2" />
+    <MESSAGE value="0730 push 1" />
+    <MESSAGE value="0731 push 1" />
+    <MESSAGE value="0731 push 2" />
+    <MESSAGE value="0731 push 3" />
+    <MESSAGE value="0802 push 1" />
+    <MESSAGE value="0802 push 2" />
+    <MESSAGE value="0802 push 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="0802 push 3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/SSGATE_main$test.coverage" NAME="test Coverage Results" MODIFIED="1722408744004" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tutorial" />
+  </component>
+</project>
