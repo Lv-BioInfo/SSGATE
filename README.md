@@ -68,8 +68,7 @@ network for a single omics data (transcriptome or proteome).
                          feat='X_pca', 
                          rad_cutoff=None, 
                          k_cutoff=None, 
-                         model='Radius', 
-                         verbose=True):
+                         model='Radius'):
 
 #### Parameters of `Cal_Nbrs_Net`:
 
@@ -87,9 +86,6 @@ network for a single omics data (transcriptome or proteome).
 
 - **`model`** (default: `'Radius'`):
   - Specifies the type of model to use. Possible values are `'Radius'` and `'KNN'`.
-
-- **`verbose`** (default: `True`):
-  - If `True`, the function will print progress information as it calculates.
 
 
 return value:
@@ -119,10 +115,7 @@ representation of the two omics can be obtained.
                                       epochs_init = 50, 
                                       n_epochs=300, 
                                       lr=0.001,
-                                      save_reconstrction=False, 
-                                      sigma = 0.1, 
-                                      device = "cuda:0", 
-                                      feat1 = "PCA")
+                                      sigma = 0.1)
 
 #### Hyperparameters of `train`:
 
@@ -162,73 +155,32 @@ representation of the two omics can be obtained.
   - **Description**: The interval (in epochs) at which clustering is updated during training. This means the clustering labels are updated every `cluster_update_epoch` epochs.
   - **Type**: Integer
 
-- **`key_added`** (default: `'ssgate_embed'`):
-  - **Description**: The key under which the resulting embeddings are stored in the AnnData object. This allows retrieval of the embeddings after training.
-  - **Type**: String
-
-- **`gradient_clipping`** (default: `5.0`):
-  - **Description**: The maximum allowed value for gradient clipping. This is used to prevent the gradients from exploding by scaling them to this maximum value.
-  - **Type**: Float
-
-- **`weight_decay`** (default: `0.0001`):
-  - **Description**: The weight decay (L2 regularization) factor for the optimizer. This helps to prevent overfitting by penalizing large weights.
-  - **Type**: Float
-
-- **`verbose`** (default: `True`):
-  - **Description**: If `True`, prints progress information during training. This is useful for monitoring the training process.
-  - **Type**: Boolean
-
-- **`random_seed`** (default: `0`):
-  - **Description**: The seed for random number generators to ensure reproducibility of the training process. Using the same seed will produce the same results every time the code is run.
-  - **Type**: Integer
-
-- **`save_loss`** (default: `False`):
-  - **Description**: If `True`, saves the training loss history in the AnnData object. This can be useful for analyzing the training performance later.
-  - **Type**: Boolean
-
-- **`save_reconstrction`** (default: `False`):
-  - **Description**: If `True`, saves the reconstructed data in the AnnData object. This allows for inspection of the reconstructed data post-training.
-  - **Type**: Boolean
-
 - **`sigma`** (default: `0.1`):
   - **Description**: The weighting factor for the triplet loss in the overall loss calculation. This controls the importance of the triplet loss relative to the reconstruction loss.
   - **Type**: Float
-
-- **`margin`** (default: `1.0`):
-  - **Description**: The margin parameter for the triplet loss. It defines the minimum distance between positive and negative pairs in the embedding space.
-  - **Type**: Float
-
-- **`device`** (default: `torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')`):
-  - **Description**: The device on which to run the training, either GPU (if available) or CPU. Using a GPU can significantly speed up the training process.
-  - **Type**: `torch.device`
-
-- **`feat1`** (default: `"PCA"`):
-  - **Description**: The feature type used for the first dataset (`adata1`). It typically refers to the PCA-reduced features of the transcriptomics data.
-  - **Type**: String
-
-- **`feat2`** (default: `'fullproteins'`):
-  - **Description**: The feature type used for the second dataset (`adata2`). It typically refers to the full protein expression data.
-  - **Type**: String
-
-
 
 ##  SSGATE Reproduction Scripts
 
 We provide scripts for reproducing the results of the SSGATE paper, as detailed below:
 
 ### Single-Cell Multi-Omics Datasets
-
 1. **BMNC Dataset Reproduction:**
-   - Script file: [Tutorial_of_SSGATE_BMNC.ipynb](./Tutorial/Tutorial_of_SSGATE_BMNC.ipynb)
+   - Script file: [Tutorial_of_SSGATE_BMNC.ipynb](./Tutorial/tutorial_of_SSGATE_BMNC.ipynb)
 
 2. **SLN_111_D1 Dataset Reproduction:**
    - Script file: [Tutorial_of_SSGATE_SLN111D1.ipynb](./Tutorial/Tutorial_of_SSGATE_SLN111D1.ipynb)
 
+### Converting single-cell multi-omics data between different data formats
+1. **BMNC Dataset Tranverse:**
+   - Script file: [BMNC_h5_h5ad_rds](./Tutorial/BMNC_h5_h5ad_rds)
+2. **SLN_111_D1 Dataset Tranverse:**
+   - Script file: [SLN111D1_h5ad_rds](./Tutorial/SLN111D1_h5ad_rds)
+
 ### Spatial Multi-Omics Dataset and Downstream Analysis
 
 - Script file: [Tutorial_of_SSGATE_SCS_MT.ipynb](./Tutorial/Tutorial_of_SSGATE_SCS_MT.ipynb)
-- Presudo-time Analysis used Monocle3:  [TutorIal_of_Monocle3.Rmd](./Tutorial/TutorIal_of_Monocle3.Rmd)
-- GO analysis used ClusterProfiler: [Tutorial_of_GO_analysis.Rmd](./Tutorial/Tutorial_of_GO_analysis.Rmd)
+- Presudo-time Analysis used Monocle3:  [TutorIal_of_Monocle3.Rmd](./Tutorial/Tutorial_of_Monocle3.ipynb)
+- GO analysis used ClusterProfiler: [Tutorial_of_GO_analysis.Rmd](./Tutorial/Tutorial_of_ClusterProfiler.ipynb)
 
 
 
