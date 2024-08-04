@@ -41,8 +41,32 @@ def Transfer_pytorch_Data(adata, feat = "PCA"):
     return data
 
 
-def Cal_Nbrs_Net(adata, feat = 'X_pca', rad_cutoff=None, k_cutoff=None, model='Radius', verbose=True):
+def Cal_Nbrs_Net(adata, feat = None, rad_cutoff=None, k_cutoff=None, model='Radius', verbose=True):
 # feat = {'X_pca', "spatial"}
+
+    # Determine whether to use spatial location coordinates or PCA information to construct a neighboring network
+    if feat is None:
+        if 'spatial' in adata.obsm:
+            feat = 'spatial'
+            if verbose:
+                print('------Using spatial data, constructing neighborhood graph based on spatial coordinates...')
+        elif 'X_pca' in adata.obsm:
+            feat = 'X_pca'
+            if verbose:
+                print('------Using PCA data, constructing neighborhood graph based on PCA coordinates...')
+        else:
+            raise ValueError('adata.obsm does not contain spatial or X_pca data.')
+    elif feat not in adata.obsm:
+        raise ValueError(f'{feat} is not found in adata.obsm.')
+    else:
+        if verbose:
+            print(f'------Using {feat} data, constructing neighborhood graph based on {feat} coordinates...')
+
+    # Calculate the neighbor relationship of a given cell based on the radius or nearest neighbor (KNN) model.
+    assert (model in ['Radius', 'KNN'])
+    if verbose:
+        print('------Calculating spatial graph...')
+
     assert(model in ['Radius', 'KNN'])
     if verbose:
         print('------Calculating spatial graph...')
