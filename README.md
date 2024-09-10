@@ -194,6 +194,9 @@ If you use `SSGATE` in your work, please cite it.
 > _bioRxiv_ 2024 June 04. doi: [https://doi.org/10.1101/2024.06.03.597266](https://doi.org/10.1101/2024.06.03.597266).
 
 
+## Conflict of interest
+The authors declare that they have no conflicts of interest.
+
 ## Contact
 Any questions or suggestions on SSGATE are welcomed! Please report it on issues, 
 or contact Lin Liu (liulin4@genomics.cn).
