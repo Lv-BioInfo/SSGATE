@@ -187,11 +187,11 @@ We provide scripts for reproducing the results of the SSGATE paper, as detailed 
 
 ## Citation
 If you use `SSGATE` in your work, please cite it.
-> **Single-cell multi-omics and spatial multi-omics data integration via dual-path graph attention auto-encoder**
+> **Multi-omics integration for both single-cell and spatially resolved data based on dual-path graph attention auto-encoder**
 >
 > Tongxuan Lv, Yong Zhang, Junlin Liu, Qiang Kang, Lin Liu
 > 
-> _bioRxiv_ 2024 June 04. doi: [https://doi.org/10.1101/2024.06.03.597266](https://doi.org/10.1101/2024.06.03.597266).
+> _Briefings in Bioinformatics_ 2024 September 18. doi: [https://doi.org/10.1093/bib/bbae450](https://doi.org/10.1093/bib/bbae450).
 
 
 ## Conflict of interest
